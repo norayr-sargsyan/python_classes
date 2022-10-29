@@ -1,6 +1,7 @@
+import typing
 from random import randint
 
-
+import p as p
 
 
 class DictMake:
@@ -22,13 +23,13 @@ class DictMake:
         dict_2 = {}
         for i in dict_1:
             if dict_1[i] not in tuple_1:
-                tuple_1 += (dict_1[i], )
+                tuple_1 += (dict_1[i],)
                 dict_2[i] = dict_1[i]
         print(dict_2)
 
-# DictMake_1 = DictMake("pyton")
-#
-# DictMake_1.duplicate_remove()
+    # DictMake_1 = DictMake("pyton")
+    #
+    # DictMake_1.duplicate_remove()
     def max_tree_value(self):
         dict_1 = {}
         for k in self.makedict:
@@ -74,8 +75,23 @@ class DictMake:
         print(new_dict)
 
 
-
-
 DictMake_1 = DictMake("abcdefjh")
 
 DictMake_1.max_tree_value()
+
+
+class Circle:
+    def __init__(self, rad: typing.Union[int, float]):
+        self.rad = rad
+
+    def area(self):
+        pe = 3.14
+        s = pe * self.rad ** 2
+        return s
+
+    def perimetr(self):
+        pi = 3.14
+        perimetr = 2 * pi * self.rad
+
+        return perimetr
+
