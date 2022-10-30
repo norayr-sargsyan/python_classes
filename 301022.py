@@ -43,8 +43,6 @@ class DictMake:
 
 DictMake_1 = DictMake("abcdefjh")
 
-DictMake_1.make()
-DictMake_1.duplicate_remove()
 DictMake_1.max_tree_value()
 
 
