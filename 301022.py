@@ -1,8 +1,6 @@
 import typing
 from random import randint
 
-import p as p
-
 
 class DictMake:
     def __init__(self, dict_str):
@@ -13,34 +11,21 @@ class DictMake:
         for k in self.makedict:
             rand_1 = randint(0, 9)
             dict_[k] = rand_1
+        return dict_
 
     def duplicate_remove(self):
-        dict_1 = {}
-        for k in self.makedict:
-            rand_2 = randint(0, 9)
-            dict_1[k] = rand_2
+        dict_1 = self.make()
         tuple_1 = ()
         dict_2 = {}
         for i in dict_1:
             if dict_1[i] not in tuple_1:
                 tuple_1 += (dict_1[i],)
                 dict_2[i] = dict_1[i]
-        print(dict_2)
+        return dict_2
 
-    # DictMake_1 = DictMake("pyton")
-    #
-    # DictMake_1.duplicate_remove()
+#
     def max_tree_value(self):
-        dict_1 = {}
-        for k in self.makedict:
-            rand_2 = randint(0, 30)
-            dict_1[k] = rand_2
-        tuple_1 = ()
-        dict_2 = {}
-        for i in dict_1:
-            if dict_1[i] not in tuple_1:
-                tuple_1 += (dict_1[i],)
-                dict_2[i] = dict_1[i]
+        dict_2 = self.duplicate_remove()
         max_1 = -1
         k = ""
         new_dict = {}
@@ -94,4 +79,3 @@ class Circle:
         perimetr = 2 * pi * self.rad
 
         return perimetr
-
