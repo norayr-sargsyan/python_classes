@@ -15,11 +15,11 @@ class DictMake:
 
     def duplicate_remove(self):
         dict_1 = self.make()
-        tuple_1 = ()
+        list_1 = []
         dict_2 = {}
         for i in dict_1:
-            if dict_1[i] not in tuple_1:
-                tuple_1 += (dict_1[i],)
+            if dict_1[i] not in list_1:
+                list_1.append(dict_1[i])
                 dict_2[i] = dict_1[i]
         return dict_2
 
@@ -38,12 +38,7 @@ class DictMake:
             dict_2.pop(k)
             new_dict[k] = max_1
 
-        print(new_dict)
-
-
-DictMake_1 = DictMake("abcdefjh")
-
-DictMake_1.max_tree_value()
+        return new_dict
 
 
 class Circle:
