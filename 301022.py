@@ -23,45 +23,28 @@ class DictMake:
                 dict_2[i] = dict_1[i]
         return dict_2
 
-#
     def max_tree_value(self):
+
         dict_2 = self.duplicate_remove()
-        max_1 = -1
-        k = ""
         new_dict = {}
-        for i in dict_2:
-            if dict_2[i] > max_1:
-                max_1 = dict_2[i]
-                k = i
+        for max_1 in range(0, 3):
+            max_1 = -1
+            k = ""
+            for i in dict_2:
+                if dict_2[i] > max_1:
+                    max_1 = dict_2[i]
+                    k = i
 
-        dict_2.pop(k)
-        new_dict[k] = max_1
-
-        max_1 = -1
-        k = ""
-        for i in dict_2:
-            if dict_2[i] > max_1:
-                max_1 = dict_2[i]
-                k = i
-
-        dict_2.pop(k)
-        new_dict[k] = max_1
-
-        max_1 = -1
-        k = ""
-        for i in dict_2:
-            if dict_2[i] > max_1:
-                max_1 = dict_2[i]
-                k = i
-
-        dict_2.pop(k)
-        new_dict[k] = max_1
+            dict_2.pop(k)
+            new_dict[k] = max_1
 
         print(new_dict)
 
 
 DictMake_1 = DictMake("abcdefjh")
 
+DictMake_1.make()
+DictMake_1.duplicate_remove()
 DictMake_1.max_tree_value()
 
 
