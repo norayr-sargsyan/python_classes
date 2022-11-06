@@ -40,7 +40,8 @@ class Product(Country, Brand, Season):
         super().__init__(*args, **kwargs)
 
     def present(self):
-        return f"{self.product_name}: whose price is {self.price}. from the {self.type}."
+        return f"{self.product_name}: whose price is {self.price}. from the {self.type}.\n" \
+               f"{Country.present(self)}\n{Brand.present(self)}\n{Season.present(self)}"
 
     def discount(self) -> int:
 
@@ -56,55 +57,48 @@ class Product(Country, Brand, Season):
     def increase_quality(self):
 
         if self.type == "food" and self.season_name == "summer":
-            quality_new = self.quality + (self.quality * 50 / 100)
+            self.quality = self.quality + (self.quality * 50 / 100)
         elif self.type == "car_pants" and self.continent == "Asia":
-            quality_new = self.quality * 3
+            self.quality = self.quality * 3
         elif self.type == "clothes" and self.brand_name == "Adidas" and self.temperature < 0:
-            quality_new = self.quality + (self.quality * 30 / 100)
-        else:
-            quality_new = self.quality
+            self.quality = self.quality + (self.quality * 30 / 100)
 
-        return quality_new
+        return self.quality
 
     def decrease_quality(self):
         if self.continent == "Antarctica" and self.type == "car_pants":
-            quality_new = 0
+            self.quality = 0
         elif self.type == "clothes" and self.continent == "Africa":
-            quality_new = self.quality * 2 / 100
+            self.quality = self.quality * 2 / 100
         elif self.type == "food" and self.product_name == "Ananas" and self.season_name == "summer":
-            quality_new = self.quality - (self.quality * 70 / 100)
-        else:
-            quality_new = self.quality
+            self.quality = self.quality - (self.quality * 70 / 100)
 
-        return quality_new
+        return self.quality
+
+
+x = Product(name_country="Armenia", continent="Asia", brand_name="Aregi", business_start_date=2020,
+            season_name="winter", average_temperature=2, product_name="dried fruit", product_type="fruit",
+            product_price=10000, product_quantity=90000)
+
+
+# print(x.present())
 
 
 class Hotel:
+    mid_room = [1, 1, 1, 1, 1]
+    lux_room = [1, 1, 1, 1, 1]
+
     def __init__(self, hotel_name, hotel_please, mid_room_price, lux_room_price, *args, **kwargs):
         self.hotel_name = hotel_name
         self.hotel_please = hotel_please
         self.mid_room_price = mid_room_price
         self.lux_room_price = lux_room_price
         super().__init__(*args, **kwargs)
-        self.mid_room = {"room1": self.mid_room_price, "room2": self.mid_room_price, "room3": self.mid_room_price}
-        self.lux_room = {"room1": self.lux_room_price, "room2": self.lux_room_price, "room3": self.lux_room_price}
 
     def presentation(self):
         return f"Welcome {self.hotel_name} which is located in {self.hotel_please},\n" \
                f"you can relax in our luxury rooms which cost {self.lux_room_price} dollars and standard rooms which " \
                f"\n cost {self.mid_room_price} dollars. "
-
-    def booking(self):
-        if len(self.mid_room) == 0:
-            self.lux_room.popitem()
-            book = "Booked"
-        elif len(self.lux_room) == 0:
-            book = "Busy"
-        else:
-            self.mid_room.popitem()
-            book = "Booked"
-
-        return book
 
     def available_room_check(self):
         if len(self.mid_room) != 0:
@@ -132,7 +126,7 @@ class Taxi:
     def presentation(self):
         return f"Taxi {self.taxi_name}\n{self.car_types} cars will serve you for only {self.price_for_tour} dollars"
 
-    def discount(self):
+    def discount_taxi(self):
         if 7 > datetime.now().hour > 4:
             discount_taxi = self.price_for_tour - (self.price_for_tour * 5 / 100)
         else:
@@ -140,15 +134,73 @@ class Taxi:
         return discount_taxi
 
 
-class Your(Hotel, Taxi):
-    def __init__(self, tour_name, *args, **kwargs):
+class Tour(Hotel, Taxi):
+    book_l = []
+    book_m = []
+
+    def __init__(self, tour_name, lux_tour, mid_tour, *args, **kwargs):
         self.tour_name = tour_name
+        self.lux_tour = lux_tour
+        self.mid_tour = mid_tour
         super().__init__(*args, **kwargs)
         self.lux = self.price_for_tour + self.lux_room_price
-        self.mid = self.price_for_tour + self.mid_room_price
+        self.mid = self.price_for_tour + self.discount()
 
     def presentation(self):
-        return f"Hello we offer {self.tour_name} tour we have two options {self.lux} and {self.mid}\n" \
+        return f"Hello we offer {self.tour_name} tour we have two options {self.lux}dollar and {self.mid}dollar\n" \
                f"which includes transport with {self.taxi_name} company which provides {self.car_types} cars and price \n" \
-               f"for it is {self.price_for_tour}\n" \
+               f"for it is {self.discount_taxi()}dollar\n" \
                f"we will stay at {self.hotel_name} which offers tw"
+
+    def lux_booking(self):
+
+        if self.lux_tour == 1 and len(self.lux_room) != 0:
+            self.book_l.append(1)
+            self.lux_room.remove(1)
+            book1 = f"Booked lux room,there are {len(self.lux_room)} rooms available"
+        elif self.lux_tour == 0 and len(self.book_l) != 0:
+            self.lux_room.append(1)
+            self.book_l.remove(1)
+            book1 = f"Endid Tour, booked rooms is {len(self.book_l)}"
+        else:
+            book1 = "All rooms are booked"
+        return book1, self.lux_room, self.book_l
+
+    def mid_booking(self):
+
+        if self.mid_tour == 1 and len(self.mid_room) != 0:
+            self.book_m.append(1)
+            self.mid_room.remove(1)
+            book2 = f"Booked lux room,there are {len(self.lux_room)} rooms available"
+        elif self.mid_tour == 0 and len(self.book_m) != 0:
+            self.mid_room.append(1)
+            self.book_m.remove(1)
+            book2 = f"Endid Tour, booked rooms is {len(self.book_l)}"
+        else:
+            book2 = "All rooms are booked"
+        return book2, self.mid_room, self.book_m
+
+
+order = Tour(tour_name="Agata", lux_tour=1, mid_tour=1, taxi_name="TaTul", car_types="Sprinter", price_for_tour=100,
+             hotel_name="Marriott", hotel_please="Tsaghkadzor", mid_room_price=500, lux_room_price=1000)
+
+print(order.lux_booking())
+print(order.mid_booking())
+
+order1 = Tour(tour_name="Agata", lux_tour=1, mid_tour=1, taxi_name="TaTul", car_types="Sprinter", price_for_tour=100,
+             hotel_name="Marriott", hotel_please="Tsaghkadzor", mid_room_price=500, lux_room_price=1000)
+
+print(order1.lux_booking())
+print(order1.mid_booking())
+
+order3 = Tour(tour_name="Agata", lux_tour=1, mid_tour=1, taxi_name="TaTul", car_types="Sprinter", price_for_tour=100,
+             hotel_name="Marriott", hotel_please="Tsaghkadzor", mid_room_price=500, lux_room_price=1000)
+
+print(order3.lux_booking())
+print(order3.mid_booking())
+
+order1 = Tour(tour_name="Agata", lux_tour=0, mid_tour=0, taxi_name="TaTul", car_types="Sprinter", price_for_tour=100,
+             hotel_name="Marriott", hotel_please="Tsaghkadzor", mid_room_price=500, lux_room_price=1000)
+
+print(order1.lux_booking())
+print(order1.mid_booking())
