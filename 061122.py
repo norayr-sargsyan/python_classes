@@ -21,11 +21,12 @@ class Triangle:
         return True
 
     def is_alike_per(self, other):
-        if sum((self.a, self.b, self.c)) == sum(other):
+        if sum((self.a, self.b, self.c)) == sum(other.sort_size_tuple()):
             return True
         return False
 
     def is_alike_area(self, other):
+        other = other.sort_size_tuple()
         p_1 = sum((self.a, self.b, self.c)) / 2
         p_2 = sum(other) / 2
         area_1 = (p_1 * (p_1 - self.a) * (p_1 - self.b) * (p_1 - self.c)) ** 0.5
@@ -37,8 +38,8 @@ class Triangle:
 
 c1 = Triangle(1, 2, 3)
 c2 = Triangle(2, 3, 1)
-# print(c1.is_alike_per(c2))
-# print(c1.is_alike_area(c2))
+print(c1.is_alike_per(c2))
+print(c1.is_alike_area(c2))
 print(c1 == c2)
 
 
@@ -60,6 +61,3 @@ class Rectangular:
         if other.sort_size()[-1] < self.sort_size()[-1]:
             return True
         return False
-
-
-
