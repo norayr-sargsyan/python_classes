@@ -1,0 +1,5 @@
+Day    where all begins 
+Hello new line from <<Armenia>>
+This is text file   homework
+You can find here   interesting   symbols
+and cities like <<Erevan>>
