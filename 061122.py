@@ -14,6 +14,11 @@ class Triangle:
     def sort_size_tuple(self):
         return sorted((self.a, self.b, self.c))
 
+    def area(self):
+        p_1 = sum((self.a, self.b, self.c)) / 2
+        area_1 = (p_1 * (p_1 - self.a) * (p_1 - self.b) * (p_1 - self.c)) ** 0.5
+        return area_1
+
     def __eq__(self, new_triangle):
         for i in range(3):
             if self.sort_size_tuple()[i] != new_triangle.sort_size_tuple()[i]:
@@ -26,12 +31,7 @@ class Triangle:
         return False
 
     def is_alike_area(self, other):
-        other = other.sort_size_tuple()
-        p_1 = sum((self.a, self.b, self.c)) / 2
-        p_2 = sum(other) / 2
-        area_1 = (p_1 * (p_1 - self.a) * (p_1 - self.b) * (p_1 - self.c)) ** 0.5
-        area_2 = (p_2 * (p_2 - other[0]) * (p_2 - other[1]) * (p_2 - other[2])) ** 0.5
-        if area_1 == area_2:
+        if self.area() == other.area():
             return True
         return False
 
