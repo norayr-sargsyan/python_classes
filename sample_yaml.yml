@@ -19,3 +19,7 @@ items:
   - Lucy
   - The Avengers
   - The Other Boleyn Girl
+
+
+server:
+  port: 8090

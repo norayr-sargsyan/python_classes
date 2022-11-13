@@ -25,7 +25,8 @@ class Human:
         This method tell the optimal weight:
         :return: str
         """
-        if self.gender[0].upper() == "F" or self.gender.upper() == "MEN":
+
+        if self.gender[0].upper() == "F" or self.gender.upper() == "MAN":
             result = (self.height - 100) * 1.15
         else:
             result = (self.height - 110) * 1.15
@@ -72,6 +73,7 @@ class Student(Human):
         for i in self.marks:
             sum_marks += i
         mog = sum_marks / len(self.marks)
+
 
         return mog
 
