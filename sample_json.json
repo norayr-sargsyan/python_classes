@@ -1,1 +1,7 @@
-{"sample": {"name": "xkcd", "image-url": "https://imgs.xkcd.com/comics/python.png"}, "sample_": {"name": "fox", "image-url": "http://www.httpbin.org/image/jpeg"}}
+{
+    "name": "xkcd",
+    "image-url1": "https://imgs.xkcd.com/comics/python.png",
+    "name1": "fox",
+    "image-url2": "http://www.httpbin.org/image/jpeg"
+
+}
