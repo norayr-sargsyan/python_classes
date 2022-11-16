@@ -1,5 +1,1 @@
-{
-    "year": 2022,
-    "month": 11,
-    "day": 13
-}
+{"sample": {"name": "xkcd", "image-url": "https://imgs.xkcd.com/comics/python.png"}, "sample_": {"name": "fox", "image-url": "http://www.httpbin.org/image/jpeg"}}

@@ -1,5 +1,4 @@
 import requests
-import os
 import json
 
 
@@ -16,18 +15,36 @@ class Pictures:
                     self.image_list.append(i)
         return self.image_list
 
-    def jpeg_download(self):
-        sample = 0
-        for i in self.image_list:
-            sample += 1
-            if i.endswith(".jpeg"):
-                with open(f"new_pics{sample}.jpeg" "wb") as pics:
-                    pics.write(i.content)
+    def jpeg_download(self, name):
+        for url in self.image_list:
+            if url.endswith(".jpeg"):
+                try:
+                    response = requests.get(url)
+                except Exception as err:
+                    print(f"{err}")
+                    return
 
-    def png_download(self):
-        sample = 0
-        for i in self.image_list:
-            sample += 1
-            if i.endswith(".png"):
-                with open(f"new_pics{sample}.png" "wb") as pics:
-                    pics.write(i.content)
+                s_code = str(response.status_code)
+                if s_code.startswith("2"):
+                    with open(f"{name}.jpeg", "wb") as pics:
+                        pics.write(response.content)
+
+    def png_download(self, name):
+        for url in self.image_list:
+            if url.endswith(".png"):
+                try:
+                    response = requests.get(url)
+                except Exception as err:
+                    print(f"{err}")
+                    return
+
+                s_code = str(response.status_code)
+                if s_code.startswith("2"):
+                    with open(f"{name}.png", "wb") as pics:
+                        pics.write(response.content)
+
+with open("sample_json.json", "r") as picture:
+    fine = json.load(picture)
+
+pics = Pictures(fine)
+print(pics.image_in_json(), pics.png_download(name="new_png"), pics.jpeg_download(name="new_jpeg"))
