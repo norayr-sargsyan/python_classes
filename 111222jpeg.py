@@ -9,11 +9,14 @@ class Pictures:
         self.image_list = []
 
     def image_in_json(self):
-        for item in self.pics:
-            for i in item:
-                if i.endswith(".jpg") or i.endswith(".jpeg") or i.endswith(".png"):
-                    self.image_list.append(i)
-        return self.image_list
+        with open(self.pics, "r") as pics_:
+            fine = json.load(pics_)
+
+            for item in fine:
+                for i in item:
+                    if i.endswith(".jpg") or i.endswith(".jpeg") or i.endswith(".png"):
+                        self.image_list.append(i)
+            return self.image_list
 
     def jpeg_download(self, name):
         for url in self.image_list:
@@ -43,8 +46,6 @@ class Pictures:
                     with open(f"{name}.png", "wb") as pics:
                         pics.write(response.content)
 
-with open("sample_json.json", "r") as picture:
-    fine = json.load(picture)
 
-pics = Pictures(fine)
-print(pics.image_in_json(), pics.png_download(name="new_png"), pics.jpeg_download(name="new_jpeg"))
+picture = Pictures(json_with_pics="sample_json.json")
+print(picture.image_in_json(), picture.png_download(name="new_png"), picture.jpeg_download(name="new_jpeg"))
