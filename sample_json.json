@@ -1,7 +1,42 @@
 {
+  "img1": {
     "name": "xkcd",
-    "image-url1": "https://imgs.xkcd.com/comics/python.png",
-    "name1": "fox",
-    "image-url2": "http://www.httpbin.org/image/jpeg"
-
+    "image-url": "https://imgs.xkcd.com/comics/python.png"
+  },
+  "img2": {
+    "name": "fox",
+    "image-url": "http://www.httpbin.org/image/jpeg"
+  },
+  "img3": {
+    "name": "tree",
+    "image-url": "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg"
+  },
+  "img4": {
+    "name": "ananas",
+    "image-url": "https://petapixel.com/assets/uploads/2022/07/DALLEcopy.jpg"
+  },
+  "img5": {
+    "name": "tiger",
+    "image-url": "https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
+  },
+  "img6": {
+    "name": "cat",
+    "image-url": "https://apastyle.apa.org/images/reference-cat_tcm11-268960_w1024_n.jpg"
+  },
+  "img7": {
+    "name": "bee",
+    "image-url": "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg"
+  },
+  "img8": {
+    "name": "sea",
+    "image-url": "https://img.freepik.com/free-vector/sea-beach-with-palm-tree-leaves-background-summer_33099-1767.jpg"
+  },
+  "img9": {
+    "name": "city",
+    "image-url": "https://armeniafly.com/content/cache/b8cbc42dac83604b7a2ceefde9ca8a9e-0-0.png"
+  },
+  "img10": {
+    "name": "panda",
+    "image-url": "https://tinypng.com/images/social/website.jpg"
+  }
 }
