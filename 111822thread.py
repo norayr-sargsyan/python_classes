@@ -15,15 +15,15 @@ def downloading(dict_):
     name = dict_["name"]
     try:
         response = requests.get(url)
-    except Exception as error:
-        print(f"{error}")
+    except Exception as err:
+        print(f"{err} ")
         return
     s_code = str(response.status_code)
     if s_code.startswith("2"):
-        with open(f"{name}.jpeg", "wb") as pics:
-            pics.write(response.content)
-    return f"{name} image is downloaded"
+        with open(f"{name}.jpeg", "wb") as picture:
+            picture.write(response.content)
+    print(f"{name} image is downloaded")
 
-for i in image_list:
-    x = threading.Thread(target=downloading(i))
+for i in range(len(image_list)):
+    x = threading.Thread(target=downloading, args=(image_list[i],))
     x.start()
