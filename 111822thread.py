@@ -16,8 +16,8 @@ class Downloader:
         print("started", name)
         try:
             response_ = requests.get(url)
-        except requests.exceptions.ConnectionError as err:
-            print(f"smth happened {err}")
+        except Exception as err:
+            print(f"{err}")
             return
 
         s_code = str(response_.status_code)

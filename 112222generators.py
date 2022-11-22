@@ -10,8 +10,11 @@ def password_gen():
 
 def citation_gen():
     while True:
-        cit_ = requests.get("https://zenquotes.io/api/random").json()
+        try:
+            cit_ = requests.get("https://zenquotes.io/api/random").json()
+        except Exception as err:
+            print("<<<<ERROR>>>>", "check a connection", f"{err}", sep="\n")
+            return
         yield f"<<{cit_[0]['q']}>> --{cit_[0]['a']}"
-
 
 
